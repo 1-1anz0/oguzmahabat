@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Oguz Mahabat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/fav.png' %}">
+    {%  load categories_tags %}
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/odometer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  </head>
+  <body>
+
+
+           <!-- preloader  -->
+    <!-- <div id="preloader">
+      <div id="ctn-preloader" class="ctn-preloader">
+        <div class="animation-preloader">
+          <div class="spinner"></div>
+          <div class="txt-loading">
+            <span data-text-preloader="O" class="letters-loading"> O </span>
+            <span data-text-preloader="G" class="letters-loading"> G </span>
+            <span data-text-preloader="U" class="letters-loading"> U </span>
+            <span data-text-preloader="Z" class="letters-loading"> Z </span>
+          </div>
+        </div>
+        <div class="loader">
+          <div class="row">
+            <div class="col-12 loader-section section-left">
+              <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-left">
+              <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-right">
+              <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-right">
+              <div class="bg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- preloader end -->
+
+    
+  <!-- header-area -->
+    <header>
+      <!-- header-search-area -->
+      <div class="header-search-area d-none d-md-block">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xl-2 col-lg-3 d-none d-lg-block">
+              <div class="logo">
+                <a href="{% url 'main:main' %}">
+                  <img src="{% static 'img/logo/logo.png' %}" style="width: 145px" alt="Logo">
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-10 col-lg-9">
+              <div class="d-flex align-items-center justify-content-end">
+                <div class="header-search-wrap">
+                  <form action="{% url "products:search" %}" method="get">
+                    <input type="text" placeholder="Что Вы ищете..." name="q">
+                    <select class="custom-select" name="category">
+                      {% cat as categories %}
+                      
+                      {% for category in categories %}
+                      <option 
+                      {%if 'Ähli önümler' == category.title%}
+                      select=''
+                      {% endif %}
+                       value="{{category.id}}" >{{category.title}}</option>
+                      {% endfor %}
+                     
+
+                         
+
+                    </select>
+                    <button type="submit" name="search"><i class="fas fa-search"></i></button>
+                  </form>
+                </div>
+                <!-- <div class="header-top-action">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="far fa-star"></i>Rating Item</a>
+                    </li>
+                    <li>
+                      <a href="wishlist.html"
+                        ><i class="far fa-heart"></i>Wishlist</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"><i class="fas fa-venus-double"></i>Compare</a>
+                    </li>
+                  </ul>
+                </div> -->
+                 <div class="header-action d-none d-md-block">
+
+                              
+                                        <ul>
+                                            <!-- <li><a href="#"><i class="flaticon-two-arrows"></i></a></li> -->
+
+
+                                                                                            </ul>
+                                            
+                                        
+                                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- header-search-area-end -->
+
+      <!-- menu-area -->
+      <div id="sticky-header" class="main-header menu-area blue-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+              <div class="menu-wrap">
+                <nav class="menu-nav show">
+                  <div class="logo d-block d-lg-none">
+                    <a href="#">
+                      <img src="{% static 'img/logo/white_logo.png' %}" class="sticky-none" style="width:120px" alt="Logo">
+                      <img src="{% static 'img/logo/logo.png' %}" class="sticky-block" style="width:120px" alt="Logo">
+                    </a>
+                  </div>
+
+                  <div class="navbar-wrap main-menu d-none d-lg-flex">
+                    <ul class="navigation">
+                      <li class="active">
+                      <a href="#">ГЛАВНАЯ</a>
+                      </li>                  
+                                              {% tags_categories as categories %}
+                                              {% for category in categories %}
+                                                <li><a href="{% url 'products:index' category.slug %}">{{ category.title }}</a></li>
+                                              {% endfor %}
+
+                                          </ul>
+                  </div>
+                </nav>
+              </div>
+              <!-- Mobile Menu  -->
+              <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <div class="close-btn"><i class="fas fa-times"></i></div>
+
+                <nav class="menu-box">
+                  <div class="nav-logo">
+                    <a href="index.php.html"><img src="{% static 'img/logo/white_logo.png' %}" alt="" title=""></a>
+                  </div>
+                  <div class="menu-outer">
+                    <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                  </div>
+                  <div class="social-links">
+                    <ul class="clearfix">
+                      <li>
+                        <a href="#"><span class="fab fa-twitter"></span></a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="fab fa-facebook-square"></span></a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="fab fa-pinterest-p"></span></a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="fab fa-instagram"></span></a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="fab fa-youtube"></span></a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+              <!-- End Mobile Menu -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- menu-area-end -->
+    </header>
+    <!-- header-area-end -->
+    <script>
+      function search() {
+
+        alert(document.getElementById("txtSearch").value())
+
+      }
+    </script>
+
+    <!-- main-area -->
+    {% block content %}
+    {% endblock %}
+    <!-- main-area-end -->
+
+    
+<!-- footer-area -->
+    <footer class="footer-area">
+      <div class="footer-top pt-65 pb-25">
+        <div class="container">
+
+
+          <div class="row justify-content-between">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-widget mb-50">
+                <div class="footer-logo mb-30">
+                  <a href="index.html"><img style="width:145px" src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                </div>
+                <div class="footer-text mb-35">
+                  <p>
+                    Огуз Махабат - была основана в 2009 году и обслуживает своих клиентов с подходом к обслуживанию, который не ставит под угрозу качество производства, импорта и продажи рекламной и рекламной продукции.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-sm-6">
+              <div class="footer-widget mb-50">
+                <div class="fw-title mb-35">
+                  <h5>О нас</h5>
+                </div>
+                <div class="fw-link">
+                  <ul>
+                    <li><a href="page.php.html?id=1">О нас</a></li>
+                    <li><a href="#">Контакт</a></li>
+                    <li><a href="#">Условия и положения</a></li>
+                    <li><a href="#">Заказы и возвраты</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-sm-6">
+              <div class="footer-widget mb-50">
+                <div class="fw-title mb-35">
+                  <h5>Мой аккаунт</h5>
+                </div>
+                <div class="fw-link">
+                  <ul>
+                    <li><a href="#">Мой аккаунт</a></li>
+                    <li><a href="cart.php.html">Моя корзина</a></li>
+                    <li><a href="login.php">Логин</a></li>
+                    <li><a href="register.php">Регистрация</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="footer-widget mb-50">
+                <div class="fw-title mb-35">
+                  <h5>Контакт</h5>
+                </div>
+                <div class="footer-contact">
+                  <ul>
+                    <li>
+                      <i class="fas fa-map-marker-alt"></i> 1971(G.Ezizow )köç 19, Asgabat, Turkmenistan                    </li>
+                    <li><i class="fas fa-headphones"></i> +99363165888,+99363638350</li>
+                    <li>
+                      <i class="fas fa-envelope-open"></i> oguzmahabat@gmail.com                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright-wrap copyright-style-two">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+              <div class="copyright-text">
+                <p>
+                  © 2022 <a href="#">Огуз Махабат</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer-area-end -->
+
+    <!-- JS here -->
+    {% block javaS %}
+    
+    {% endblock javaS %}
+  </body>
+</html>

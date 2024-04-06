@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load categories_tags %} 
+
+{% block content %}
+<main>
+
+    <!-- breadcrumb-area -->
+            <section class="breadcrumb-area breadcrumb-bg" data-background="img/bg/breadcrumb_bg.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <h3>{{ products.title }}</h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">{{ products.title }}</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Все</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+            <!-- shop-area -->
+            <div class="shop-area gray-bg pt-100 pb-100">
+                <div class="custom-container-two">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 order-2 order-lg-0">
+                            <aside class="shop-sidebar">
+                                <div class="widget shop-widget mb-30">
+                                    <div class="shop-widget-title">
+                                        <h6 class="title">Категории</h6>
+                                    </div>
+                                    <div class="shop-cat-list">
+                                        <ul>
+                                            {% for category in cat %}
+                                        
+                                            <li><a class="active" href="{% url 'products:index' category.slug %}"> {{category.title}}</a>
+
+                                            <ul class="sub-cat-list">
+
+                                                
+                                            </ul>
+
+                                            </li>
+
+
+                                            {% endfor %}   
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </aside>
+                        </div>
+                        <div class="col-xl-9 col-lg-8">
+
+                            <div class="row">
+
+                                {% for product in products %}
+                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                    <div class="exclusive-item exclusive-item-three text-center mb-50 " style="cursor:pointer" onclick="window.location.href = '{% url 'products:product' product.slug %}';">
+                                        <div class="exclusive-item-thumb">
+                                            <a href="{% url 'products:product' product.slug %}">
+                                                <img src="{{product.img.url}}" alt="">
+                                            </a>
+                                            <!-- <ul class="action">
+                                                <li><a href="#"><i class="flaticon-shuffle-1"></i></a></li>
+                                                <li><a href="#"><i class="flaticon-supermarket"></i></a></li>
+                                                <li><a href="#"><i class="flaticon-witness"></i></a></li>
+                                            </ul> -->
+                                        </div>
+                                        <div class="exclusive-item-content">
+                                            <span class="category-sub">{{ product.category}}</span>
+                                            <h5><a href="{% url 'products:product' product.slug %}">{{ product.title }}</a></h5>
+                                            <div class="exclusive--item--price">
+                                                <span class="new-price">{{product.price}} TMT</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                
+
+
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- shop-area-end -->
+
+
+        </main>
+{% endblock %}
